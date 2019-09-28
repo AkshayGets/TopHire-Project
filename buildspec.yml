@@ -14,7 +14,8 @@ phases:
       - npm install unit.js
       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - npm ci
-      - $(aws ecr get-login --region $AWS_DEFAULT_REGION)
+      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - REPOSITORY_URI=274304159946.dkr.ecr.us-east-1.amazonaws.com/centralized-repo
   build:
     commands:
       - echo Running tests
